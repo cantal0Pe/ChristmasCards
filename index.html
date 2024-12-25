@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+]<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -195,17 +195,7 @@
         </div>
         <div class="text">Merry Christmas</div>
         <div class="custom-message" id="custom-message"></div>
-        <div class="snowflakes">
-            <div class="snowflake"></div>
-            <div class="snowflake"></div>
-            <div class="snowflake"></div>
-            <div class="snowflake"></div>
-            <div class="snowflake"></div>
-            <div class="snowflake"></div>
-            <div class="snowflake"></div>
-            <div class="snowflake"></div>
-            <div class="snowflake"></div>
-        </div>
+        <div class="snowflakes" id="snowflakes"></div>
     </div>
     <script>
         function showCard() {
@@ -213,13 +203,35 @@
             const card = document.getElementById('card');
             const message = document.getElementById('custom-message');
             const inputContainer = document.getElementById('input-container');
-            
+
             if (nameInput.trim()) {
                 message.textContent = `Happy Holidays, ${nameInput}!`;
                 card.style.display = 'block';
-                inputContainer.style.display = 'none'; // Hide the input and button
+                inputContainer.style.display = 'none';
+                createSnowflakes();
             } else {
                 alert('Please enter your name!');
+            }
+        }
+
+        function createSnowflakes() {
+            const snowflakesContainer = document.getElementById('snowflakes');
+            const numSnowflakes = 20; // Number of snowflakes
+
+            for (let i = 0; i < numSnowflakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+
+                // Randomize position and animation
+                const randomLeft = Math.random() * 100; // Random left position (0% to 100%)
+                const randomDelay = Math.random() * 5; // Random animation delay (0s to 5s)
+                const randomDuration = 5 + Math.random() * 5; // Random animation duration (5s to 10s)
+
+                snowflake.style.left = `${randomLeft}%`;
+                snowflake.style.animationDelay = `${randomDelay}s`;
+                snowflake.style.animationDuration = `${randomDuration}s`;
+
+                snowflakesContainer.appendChild(snowflake);
             }
         }
     </script>
