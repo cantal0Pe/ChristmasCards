@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christmas Card</title>
+    <title>Personalized Christmas Card</title>
     <style>
         * {
             margin: 0;
@@ -18,7 +18,34 @@
             align-items: center;
             min-height: 100vh;
             background-color: #f0f8ff;
-            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .input-container input {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #7ecdf1;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .input-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #7ecdf1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .input-container button:hover {
+            background-color: #5fb1d4;
         }
 
         .card {
@@ -92,15 +119,6 @@
             border-radius: 5px;
         }
 
-        .gift:before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: red;
-            border-radius: 3px;
-        }
-
         .gift:nth-child(2) {
             background-color: #ff4500;
         }
@@ -109,16 +127,19 @@
             background-color: #ffd700;
         }
 
-        .gift:nth-child(3):before {
-            background-color: blue;
-        }
-
         .text {
             margin-top: 20px;
             font-size: 34px;
             color: rgb(255, 255, 255);
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             font-weight: bold;
+        }
+
+        .custom-message {
+            font-size: 20px;
+            color: white;
+            margin-top: 10px;
+            font-family: inherit;
         }
 
         /* Snowfall effect */
@@ -152,24 +173,15 @@
                 opacity: 0.5;
             }
         }
-
-        /* Randomize snowflakes */
-        .snowflake:nth-child(odd) {
-            animation-duration: 12s;
-            left: 20%;
-            animation-delay: 2s;
-        }
-
-        .snowflake:nth-child(even) {
-            animation-duration: 14s;
-            left: 60%;
-            animation-delay: 1s;
-        }
     </style>
 </head>
 
 <body>
-    <div class="card">
+    <div class="input-container">
+        <input type="text" id="user-name" placeholder="Enter your name" />
+        <button onclick="showCard()">Submit</button>
+    </div>
+    <div class="card" id="card" style="display: none;">
         <div class="tree">
             <div class="tree-part top"></div>
             <div class="tree-part middle"></div>
@@ -182,17 +194,27 @@
             <div class="gift"></div>
         </div>
         <div class="text">Merry Christmas</div>
+        <div class="custom-message" id="custom-message"></div>
         <div class="snowflakes">
-            <div class="snowflake"></div>
-            <div class="snowflake"></div>
-            <div class="snowflake"></div>
-            <div class="snowflake"></div>
-            <div class="snowflake"></div>
             <div class="snowflake"></div>
             <div class="snowflake"></div>
             <div class="snowflake"></div>
         </div>
     </div>
+    <script>
+        function showCard() {
+            const nameInput = document.getElementById('user-name').value;
+            const card = document.getElementById('card');
+            const message = document.getElementById('custom-message');
+            
+            if (nameInput.trim()) {
+                message.textContent = `Happy Holidays, ${nameInput}!`;
+                card.style.display = 'block';
+            } else {
+                alert('Please enter your name!');
+            }
+        }
+    </script>
 </body>
 
 </html>
