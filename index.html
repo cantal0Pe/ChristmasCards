@@ -177,7 +177,7 @@
 </head>
 
 <body>
-    <div class="input-container">
+    <div class="input-container" id="input-container">
         <input type="text" id="user-name" placeholder="Enter your name" />
         <button onclick="showCard()">Submit</button>
     </div>
@@ -206,10 +206,12 @@
             const nameInput = document.getElementById('user-name').value;
             const card = document.getElementById('card');
             const message = document.getElementById('custom-message');
+            const inputContainer = document.getElementById('input-container');
             
             if (nameInput.trim()) {
                 message.textContent = `Happy Holidays, ${nameInput}!`;
                 card.style.display = 'block';
+                inputContainer.style.display = 'none'; // Hide the input and button
             } else {
                 alert('Please enter your name!');
             }
